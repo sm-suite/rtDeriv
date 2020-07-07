@@ -1,10 +1,12 @@
+import os
 import sys
 import tkinter
-tkinter.use('Agg')
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
 from tkinter import *
 import numpy as np
 
-import os
 
 set_rng = np.arange(35,55,1)
 typ3 = 'tp'
