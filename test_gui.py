@@ -60,8 +60,8 @@ class MyWindow:
 			for n in range(0,len(set_rng)): print(set_rng[n], ',', s1_rez[n], file=f)
 
 
-test_window=Tk()
-mywin=MyWindow(test_window)
-test_window.title('Real-Time Derivative Model')
-test_window.geometry("400x300+10+10")
-test_window.mainloop()
+window=Tk()
+mywin=MyWindow(window)
+window.title('Real-Time Derivative Model')
+window.geometry("400x300+10+10")
+window.mainloop()
