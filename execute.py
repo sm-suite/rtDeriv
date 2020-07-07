@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import time
@@ -17,7 +15,7 @@ ax5, ax6 = fig.add_subplot(325), fig.add_subplot(326)
 fig.suptitle("Real-Time Derivative Model", fontsize=16)
 
 #view function
-def test_dAnimate(i):
+def dAnimate(i):
 	pullData = open("b1results.txt","r").read()
 	dataArray = pullData.split('\n')
 	pts, pts2, net, b1, s1 = [], [], [], [], []
@@ -74,7 +72,7 @@ def test_dAnimate(i):
 		ax2.set_title('Net', fontsize=12)
 		for ax in [ax5, ax6]: ax.set_xlabel('Total Points', fontsize=14)
 
-#assign variable 'ani'; matplotlib's animation module, with 'test_dAnimate' function as an operator.
-ani = animation.FuncAnimation(fig, test_dAnimate, interval=1000)
+#assign variable 'ani'; matplotlib's animation module, with 'dAnimate' function as an operator.
+ani = animation.FuncAnimation(fig, dAnimate, interval=1000)
 
 plt.show()
