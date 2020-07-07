@@ -1,6 +1,8 @@
 import sys
 from tkinter import *
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import os
 
 set_rng = np.arange(35,55,1)
