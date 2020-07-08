@@ -8,11 +8,6 @@ set_rng = np.arange(35,55,1)
 typ3 = 'tp'
 #typ3 = 'option'
 
-w1=tk.Label(window, image=logo).pack(side="right")
-w2=tk.Label(window, justify=tk.LEFT, padx=10).pack(side="left")
-b1label=tk.Label(window, text="Over", justify="right", anchor="e", padx=50, bd=12, height=2, font="Times 24").pack()
-s1label=tk.Label(window, text="Under", justify="right", anchor="e", padx=50, bd=20, height=102, font="Times 24").pack()
-
 class test_MyWindow:
 	def test___init__(self, win):
 		self.lbl1=Label(win, text='Risk')
