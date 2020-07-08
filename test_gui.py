@@ -8,7 +8,7 @@ set_rng = np.arange(35,55,1)
 typ3 = 'tp'
 #typ3 = 'option'
 
-window=Tk()
+window=tk.Tk()
 logo=tk.PhotoImage(file="atb.png")
 
 w1=tk.Label(window, image=logo).pack(side="right")
