@@ -8,8 +8,6 @@ set_rng = np.arange(35,55,1)
 typ3 = 'tp'
 #typ3 = 'option'
 
-logo=tk.PhotoImage(file="atb.png")
-
 w1=tk.Label(window, image=logo).pack(side="right")
 w2=tk.Label(window, justify=tk.LEFT, padx=10).pack(side="left")
 b1label=tk.Label(window, text="Over", justify="right", anchor="e", padx=50, bd=12, height=2, font="Times 24").pack()
@@ -68,12 +66,5 @@ class test_MyWindow:
 		s1_rez = [s1w if n < abs(s1stk) else -s1r for n in set_rng]
 		with open('s1results.txt', 'w') as f:
 			for n in range(0,len(set_rng)): print(set_rng[n], ',', s1_rez[n], file=f)
-
-
-mywin=test_MyWindow(window)
-
-window.title('Real-Time Derivative Model')
-window.geometry("800x300+10+10")
-window.mainloop()
 
 
