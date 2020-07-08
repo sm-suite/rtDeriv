@@ -17,7 +17,7 @@ b1label=tk.Label(window, text="Over", justify="right", anchor="e", padx=50, bd=1
 s1label=tk.Label(window, text="Under", justify="right", anchor="e", padx=50, bd=20, height=102, font="Times 24").pack()
 
 class test_MyWindow:
-	def __init__(self, win):
+	def test___init__(self, win):
 		self.lbl1=Label(win, text='Risk')
 		self.lbl2=Label(win, text='Win')
 		self.lbl3=Label(win, text='Score')
