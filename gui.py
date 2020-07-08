@@ -9,7 +9,7 @@ typ3 = 'tp'
 #typ3 = 'option'
 
 window=Tk()
-logo=tk.PhotoImage(file="atbook.png")
+logo=tk.PhotoImage(file="atb.png")
 
 w1=tk.Label(window, image=logo).pack(side="right")
 w2=tk.Label(window, justify=tk.LEFT, padx=10).pack(side="left")
@@ -25,10 +25,10 @@ class MyWindow:
 		self.lbl5=Label(win, text='Win')
 		self.lbl6=Label(win, text='Score')
 
-		self.t1=Entry(bd=3)
+		self.t1=Entry(bd=1)
 		self.t2=Entry(bd=1)
 		self.t3=Entry(bd=1)
-		self.t4=Entry(bd=3)
+		self.t4=Entry(bd=1)
 		self.t5=Entry(bd=1)
 		self.t6=Entry(bd=1)
 		self.btn1=Button(win, text='Update')
@@ -40,12 +40,14 @@ class MyWindow:
 		self.t2.place(x=200, y=75)
 		self.lbl3.place(x=160, y=100)
 		self.t3.place(x=200, y=100)
+		
 		self.lbl4.place(x=160, y=200)
 		self.t4.place(x=200, y=200)
 		self.lbl5.place(x=160, y=225)
 		self.t5.place(x=200, y=225)
 		self.lbl6.place(x=160, y=250)
 		self.t6.place(x=200, y=250)
+		
 		self.b1=Button(win, text='Update', command=self.b1rez)
 		self.b2=Button(win, text='Update', command=self.s1rez)
 		self.b1.place(x=100, y=100)
@@ -74,3 +76,5 @@ mywin=MyWindow(window)
 window.title('Real-Time Derivative Model')
 window.geometry("800x300+10+10")
 window.mainloop()
+
+
