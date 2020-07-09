@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import time
 def view4():
-	#A2 define 'ro' and 'typ3'
+	#A2 define 'ro' and 'dType'
 	ro = lambda x : round(x, ndigits=2)
-	typ3 = 'tp' #alt typ3 = 'option'
+	dType = 'tp' #alt dType = 'option'
 
 	#B initialize figure, add 6 subplots
 	fig = plt.figure(figsize=(8, 6))
@@ -35,7 +35,13 @@ def view4():
 		#create 'net' set from b1 and s1
 		zipped_rez = zip(b1, s1)
 		net = [x+y for (x,y) in zipped_rez]
-		bcs, wcs = ro(max(net)), ro(min(net)) #bcs and wcs variables for resp. stats in visual
+		bcs, wcs = ro(max(net)), ro(min(net))
+		if max(b1) >= max(s1): bcsa = ro(max(b1))
+		else: bcsa = ro(max(s1))
+		if min(b1) <= min(s1): wcsa = ro(min(b1))
+		else: wcsa = ro(min(s1))
+
+		#bcs and wcs variables for resp. stats in visual
 
 		#format subplots in figure
 		for ax in [ax1, ax2, ax3, ax4]: ax.clear()
@@ -43,6 +49,7 @@ def view4():
 		for ax in [ax1, ax2]: ax.set_xticks([])
 		ax2.set_title("Net \n " + "BCS: $" + str(bcs), fontsize=12)
 		ax4.set_title("WCS: $" + str(wcs), fontsize=12)
+		ax3.set_title("WCS: $" + str(wcsa), fontsize=12)
 		
 		#generate 4 visualizations for figure
 		ax1.step(viz_rng,b1)
@@ -53,15 +60,16 @@ def view4():
 		ax4.bar(viz_rng,net)
 
 
-		#typ3 decision
-		if typ3 == 'option':	
+		#dType decision
+		if dType == 'option':	
 			ax1.set_title('Long/Short', fontsize=12)
 			for ax in [ax3, ax4]: ax.set_xlabel('Strike Price', fontsize=14)
-		elif typ3 == 'tp':
-			ax1.set_title('Over/Under', fontsize=12)
+		elif dType == 'tp':
+			ax1.set_title("Over/Under \n " + "BCS: $" + str(bcsa), fontsize=12)
+
 			for ax in [ax3, ax4]: ax.set_xlabel('Total Points', fontsize=14)
 
-	fig.suptitle("Real-Time Derivative Model", fontsize=16)
+	fig.suptitle("Real-Time Derivative Model" + "\n", fontsize=16)
 
 	#assign variable 'ani'; matplotlib's animation module, with 'dAnimate' function as an operator.
 	ani = animation.FuncAnimation(fig, Animate4, interval=1000)
