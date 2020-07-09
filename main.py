@@ -59,7 +59,7 @@ class MyWindow:
         self.b4.place(x=50, y=20)
 
         self.btn5=Button(win, text='view 4')
-        self.b5=Button(win, text='view 4', width='6', height='2', fg='blue', bg='blue', command=self.view6)
+        self.b5=Button(win, text='view 4', width='6', height='2', fg='blue', bg='blue', command=self.view4)
         self.b5.place(x=50, y=90)
 
         self.btn6=Button(win, text='view 6')
