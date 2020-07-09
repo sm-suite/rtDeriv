@@ -36,7 +36,12 @@ def view6():
 		#create 'net' set from b1 and s1
 		zipped_rez = zip(b1, s1)
 		net = [x+y for (x,y) in zipped_rez]
-		bcs, wcs = ro(max(net)), ro(min(net)) #bcs and wcs variables for resp. stats in visual
+		bcs, wcs = ro(max(net)), ro(min(net))
+		if max(b1) >= max(s1): bcsa = ro(max(b1))
+		else: bcsa = ro(max(s1))
+		if min(b1) <= min(s1): wcsa = ro(min(b1))
+		else: wcsa = ro(min(s1))
+
 
 		#format subplots in figure
 		for ax in [ax1, ax2, ax3, ax4, ax5, ax6]: ax.clear()
@@ -44,7 +49,8 @@ def view6():
 		for ax in [ax1, ax2, ax3, ax4]: ax.set_xticks([])
 		ax2.set_title("Net \n " + "BCS: $" + str(bcs), fontsize=12)
 		ax4.set_title("WCS: $" + str(wcs), fontsize=12)
-		
+		ax3.set_title("WCS: $" + str(wcsa), fontsize=12)
+
 		#generate 6 visualizations for figure
 		ax1.step(viz_rng,b1)
 		ax1.step(viz_rng,s1)
@@ -58,11 +64,11 @@ def view6():
 
 
 		#typ3 decision
-		if typ3 == 'option':	
+		if typ3 == 'option':
 			ax1.set_title('Long/Short', fontsize=12)
 			for ax in [ax5, ax6]: ax.set_xlabel('Strike Price', fontsize=14)
 		elif typ3 == 'tp':
-			ax1.set_title('Over/Under', fontsize=12)
+			ax1.set_title("Over/Under \n " + "BCS: $" + str(bcsa), fontsize=12)
 			for ax in [ax5, ax6]: ax.set_xlabel('Total Points', fontsize=14)
 
 	fig.suptitle("Real-Time Derivative Model", fontsize=16)
