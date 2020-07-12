@@ -2,7 +2,11 @@
 Real-time Derivative model. Visualize offsetting long/short options or over/under wagers.
 
 <br><br>
-Install Requirements, Execute main.py
+Install Requirements
+<br>
+Set dType(derivative type) in main.py ('option' or 'tp')<br><br>
+
+Execute main.py
 -
 
 
