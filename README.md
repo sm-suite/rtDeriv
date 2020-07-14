@@ -25,7 +25,7 @@ Adjust and update the GUI to manipulate the visual.
 rtDeriv v1.6 Flowchart ©2020 Jerold Larson. All Rights Reserved.
 -
 
-[<img src="https://abovethebook.files.wordpress.com/2020/07/rtd7-v3.png?w=768">](http://abovethebook.files.wordpress.com/)
+[<img src="https://abovethebook.files.wordpress.com/2020/07/rtd-v1.6.png?w=1024">](http://abovethebook.files.wordpress.com/)
 
 
 
