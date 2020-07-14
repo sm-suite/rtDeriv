@@ -55,17 +55,17 @@ class MyWindow:
 		self.b2.place(x=275, y=158)
 
 
-		self.btn3=Button(win, text='Complex')
-		self.b3=Button(win, text='Complex', width='6', height='2', fg='blue', bg='blue', command=self.position)
+		self.btn3=Button(win, text='Position')
+		self.b3=Button(win, text='Position', width='6', height='2', fg='blue', bg='blue', command=self.position)
 		self.b3.place(x=50, y=90)
 
 		self.btn4=Button(win, text='Simple')
-		self.b4=Button(win, text='Simple', width='6', height='2', fg='blue', bg='blue', command=self.view2)
+		self.b4=Button(win, text='Simple', width='6', height='2', fg='blue', bg='blue', command=self.simple)
 		self.b4.place(x=50, y=20)
 
 
-		self.btn5=Button(win, text='Position')
-		self.b5=Button(win, text='Position', width='6', height='2', fg='blue', bg='blue', command=self.position)
+		self.btn5=Button(win, text='Complex')
+		self.b5=Button(win, text='Complex', width='6', height='2', fg='blue', bg='blue', command=self.complex)
 		self.b5.place(x=50, y=160)
 
 
@@ -75,13 +75,13 @@ class MyWindow:
 
 	def quit(self):
 		self.win.destroy()
-	def view2(self):
-		from view2 import view2
+	def simple(self):
+		from simple import view2
 		view2()
 	def position(self):
 		from chart4 import chart4
 		chart4()
-	def position(self):
+	def complex(self):
 		from fullposition import fullposition
 		fullposition()
 	def quit(self):
