@@ -1,6 +1,10 @@
 # rtDeriv
-Real-time Derivative model. Visualize offsetting long/short options or over/under wagers.
+Real-time Derivative model. ©2020 Jerold Larson. All Rights Reserved.
 
+
+
+Visualize offsetting long/short options or over/under wagers.
+-
 <br><br>
 Install Requirements
 <br>
@@ -25,5 +29,4 @@ Adjust and update the GUI to manipulate the visual.
 <br>
 The real-time Derivative model (rtDeriv) is the property of Jerold Larson.
 <br>
-©2020 Jerold Larson. All Rights Reserved.
 
