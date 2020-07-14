@@ -16,12 +16,20 @@ Execute main.py
 
 <br><br>
 
-[<img src="https://abovethebook.files.wordpress.com/2020/07/rtdv-v13-ex-1.png">](http://abovethebook.files.wordpress.com/)
+Adjust and update the GUI to manipulate the visual.
+-
+
+
+<br><br>
+
+rtDeriv v1.6 Flowchart ©2020 Jerold Larson. All Rights Reserved.
+-
+
+[<img src="https://abovethebook.files.wordpress.com/2020/07/rtd7-v3.png?w=768">](http://abovethebook.files.wordpress.com/)
 
 
 
 <br><br>
-Adjust and update the GUI to manipulate the visual.
 -
 
 
