@@ -14,10 +14,9 @@ ro = lambda x : round(x, ndigits=2)
 def fullposition():
 
 	#B initialize figure, add 6 subplots
-	fig = plt.figure(figsize=(12, 8))
+	fig = plt.figure(figsize=(9, 9))
 	ax1, ax2, ax3 = fig.add_subplot(321), fig.add_subplot(322), fig.add_subplot(323)
 	ax4, ax5, ax6 = fig.add_subplot(324), fig.add_subplot(325), fig.add_subplot(326)
-	mycmap = plt.get_cmap('RdYlGn')
 
 
 	def Animate6tp(i):
@@ -42,10 +41,14 @@ def fullposition():
 		net = [x+y for (x,y) in zipped_rez]
 		trisk = abs(min(b1)) + abs(min(s1))
 		roi = [(val/trisk)*100 for val in net]
+		broi = [(val/trisk)*100 for val in b1]
+		sroi = [(val/trisk)*100 for val in s1]
+
+
 		b1r, s1r = ro(abs(min(b1))), ro(abs(min(s1)))
 		b1w, s1w = ro(max(b1)), ro(max(s1))
 		ww, wl, lw = ro(b1w+s1w), ro(b1w-s1r), ro(s1w-b1r)
-		wwr, wlr, lwr = ro(ww/trisk), ro(wl/trisk), ro(lw/trisk)
+		wwr, wlr, lwr = ro((ww/trisk)*100), ro((wl/trisk)*100), ro((lw/trisk)*100)
 
 
 		ax1.set_ylabel('Risk($)', fontsize=10)
@@ -58,47 +61,49 @@ def fullposition():
 
 		#format subplots in figure
 		for ax in [ax1, ax2, ax3, ax4, ax5, ax6]: ax.clear()
-		for ax in [ax1, ax5]: ax.set_ylabel('ROI(%)', fontsize=10)
-		ax3.set_ylabel('Return($)', fontsize=10)
+		for ax in [ax5]: ax.set_ylabel('ROI(%)', fontsize=10)
+
 		for ax in [ax1, ax2, ax3, ax4]: ax.set_xticks([])
-		ax2.set_title("Net", fontsize=12)
 
 
 		#generate 6 visualizations for figure
 		
-		
-		ax1.barh('over risk\n $' + str(b1r), b1r)
-		ax1.barh('under risk\n $' + str(s1r), s1r)
+		ax1.barh('Sell risk\n $' + str(s1r), s1r)		
+		ax1.barh('Buy risk\n $' + str(b1r), b1r)
 		#ax1.fill(viz_rng,s1)
 
-		ax2.barh('over win\n $' + str(b1w), b1w)
-		ax2.barh('under win\n $' + str(s1w), s1w)
-
-
-		ax3.barh('win-win\n $' + str(ww), ww)
-		ax3.barh('win-loss\n $' + str(wl), wl)
+		ax2.barh('Sell\n return\n $' + str(s1w), s1w)
+		ax2.barh('Buy\n return\n $' + str(b1w), b1w)
+		
 		ax3.barh('loss-win\n $' + str(lw), lw)
 
+		ax3.barh('win-loss\n $' + str(wl), wl)
+		ax3.barh('win-win\n $' + str(ww), ww)
 
-		ax4.barh('ROI\nwin-win\n %' + str(wwr), wwr)
-		ax4.barh('win-loss\n %' + str(wlr), wlr)
+
 		ax4.barh('loss-win\n %' + str(lwr), lwr)
+		ax4.barh('win-loss\n %' + str(wlr), wlr)
+
+		ax4.barh('win-win\n %' + str(wwr), wwr)
 
 
-
-
+		ax1.set_title("Risk($)", fontsize=12)
+		ax2.set_title("Return($)", fontsize=12)
+		ax3.set_title("Outcomes Net($)", fontsize=12)
+		ax4.set_title("Outcomes ROI(%)", fontsize=12)
+		ax5.set_title("Buy/Sell ROI(%)", fontsize=12)
+		ax6.set_title("Net ROI(%)", fontsize=12)
 
 		#ax5.stem(viz_rng,roi, linefmt='yellow', use_line_collection=True)
-		ax5.stem(viz_rng,roi, linefmt='yellow', markerfmt='bv--', use_line_collection=True)
-		ax6.stem(viz_rng,s1, linefmt='red', markerfmt='r_--', use_line_collection=True)
-		ax6.stem(viz_rng,roi, markerfmt='yD', linefmt='None', use_line_collection=True)
+		ax5.stem(viz_rng,sroi, linefmt='None', markerfmt='rv-', use_line_collection=True)
+		ax5.stem(viz_rng,broi, markerfmt='gv-', linefmt='None', use_line_collection=True)
+		ax6.stem(viz_rng,roi, linefmt='yellow', markerfmt='bv--', use_line_collection=True)
 
 
 
-		ax1.set_title("Over/Under", fontsize=12)
-		for ax in [ax5, ax6]: ax.set_xlabel('Total Points', fontsize=14)
+		for ax in [ax5, ax6]: ax.set_xlabel('Strike Price', fontsize=14)
 
-	fig.suptitle("Real-Time Derivative Model", fontsize=16)
+	fig.suptitle("Derivative Position", fontsize=16)
 
 	#assign variable 'ani'; matplotlib's animation module, with 'dAnimate' function as an operator.
 	ani = animation.FuncAnimation(fig, Animate6tp, interval=1000)
