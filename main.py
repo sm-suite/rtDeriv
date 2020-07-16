@@ -6,20 +6,18 @@ import os
 
 #range of values for the visual
 #viz_rng = np.arange(1.5,1.7,.02) #option range
-viz_rng = np.arange(30,51,1) #tp range
+viz_rng = np.arange(1.135,1.145,.001) #tp range
 
 class MyWindow:
 	def __init__(self, win):
 		#create labels 'lbl' and entry fields 't' for inputs 1-6
 
-		self.lbl1=Label(win, text='Risk') #lbl1
-		self.lbl2=Label(win, text='Odds')
-		self.lbl3=Label(win, text='Score')
-		self.lbl4=Label(win, text='Risk')
-		self.lbl5=Label(win, text='Odds')
-		self.lbl6=Label(win, text='Score')
-
-
+		self.lbl1=Label(win, text='Size') #lbl1
+		self.lbl2=Label(win, text='Price')
+		self.lbl3=Label(win, text='Strike')
+		self.lbl4=Label(win, text='Size')
+		self.lbl5=Label(win, text='Price')
+		self.lbl6=Label(win, text='Strike')
 
 		self.t1=Entry(bd=1)#t1
 		self.t2=Entry(bd=1)
@@ -55,17 +53,17 @@ class MyWindow:
 		self.b2.place(x=275, y=158)
 
 
-		self.btn3=Button(win, text='Position')
-		self.b3=Button(win, text='Position', width='6', height='2', fg='blue', bg='blue', command=self.position)
+		self.btn3=Button(win, text='ROI')
+		self.b3=Button(win, text='ROI', width='6', height='2', fg='blue', bg='blue', command=self.roi)
 		self.b3.place(x=50, y=90)
 
-		self.btn4=Button(win, text='Simple')
-		self.b4=Button(win, text='Simple', width='6', height='2', fg='blue', bg='blue', command=self.simple)
+		self.btn4=Button(win, text='BuySell')
+		self.b4=Button(win, text='BuySell', width='6', height='2', fg='blue', bg='blue', command=self.buysell)
 		self.b4.place(x=50, y=20)
 
 
-		self.btn5=Button(win, text='Complex')
-		self.b5=Button(win, text='Complex', width='6', height='2', fg='blue', bg='blue', command=self.complex)
+		self.btn5=Button(win, text='Position')
+		self.b5=Button(win, text='Position', width='6', height='2', fg='blue', bg='blue', command=self.position)
 		self.b5.place(x=50, y=160)
 
 
@@ -75,45 +73,48 @@ class MyWindow:
 
 	def quit(self):
 		self.win.destroy()
-	def simple(self):
-		from simple import view2
-		view2()
+
+	def buysell(self):
+		from buysell import buysell
+		buysell()
+	def roi(self): #roi button
+		from roi import roi
+		roi()
 	def position(self):
-		from chart4 import chart4
-		chart4()
-	def complex(self):
 		from fullposition import fullposition
 		fullposition()
+
 	def quit(self):
 		self.win.destroy()
 
 		#command for updating the 'over' position. save viz_rng and b1_rez to b1results.txt
 	def b1rez(self):
-		b1r, b1o, b1stk=float(self.t1.get()), float(self.t2.get()), float(self.t3.get())
-		b1w=float(b1r*(b1o-1))
+		b1sz, b1p, b1stk=float(self.t1.get()), float(self.t2.get()), float(self.t3.get())
+		b1r=float(b1p * b1sz)
+		b1w=float(100*b1sz + (-b1r))
 		b1_rez = [b1w if n > abs(b1stk) else -b1r for n in viz_rng]
 		with open('b1results.txt', 'w') as f:
 			for n in range(0,len(viz_rng)): print(viz_rng[n], ',', b1_rez[n], file=f)
-		
+	
 		#command for updating the 'under' position. save viz_rng and s1_rez to s1results.txt
 	def s1rez(self):
-		s1r, s1o, s1stk=float(self.t4.get()), float(self.t5.get()), float(self.t6.get())
-		s1w=float(s1r*(s1o-1))
+		s1sz, s1p, s1stk=float(self.t4.get()), float(self.t5.get()), float(self.t6.get())
+		s1r= float((100-s1p)*s1sz)
+		s1w= float(s1p*(s1sz))
 		s1_rez = [s1w if n < abs(s1stk) else -s1r for n in viz_rng]
 		with open('s1results.txt', 'w') as f:
 			for n in range(0,len(viz_rng)): print(viz_rng[n], ',', s1_rez[n], file=f)
-
 #GUI
 window=Tk() #initialize tcl/tk interpreter
 
-window.title('Real-Time Derivative Model')
+window.title('Real-Time Derivative Model v1.6')
 window.geometry("800x300-1000-1000")
 logo=tk.PhotoImage(file="atb_gui.png") #import .png file for GUI logo
 w1=tk.Label(window, image=logo).pack(side="right") #format window for the logo in the GUI
 w2=tk.Label(window, padx=10).pack(side="left") #format window for the rest of the GUI
 #label over / under input section of GUI
-b1label=tk.Label(window, text="Over", justify="right", bd=5, height=2, font="Times 20").pack()
-s1label=tk.Label(window, text="Under", justify="right", bd=5, height=60, font="Times 20").pack()
+b1label=tk.Label(window, text="Buy", justify="right", bd=5, height=2, font="Times 20").pack()
+s1label=tk.Label(window, text="Sell", justify="right", bd=5, height=60, font="Times 20").pack()
 #link MyWindow class and interpretter
 mywin=MyWindow(window)
 
